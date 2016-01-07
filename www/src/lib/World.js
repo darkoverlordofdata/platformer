@@ -16,17 +16,17 @@ function World() {
     // Load the visual
     var image = document.getElementById('tileset');
     this.visual = document.createElement('canvas');
-    this.visual.width = this.width * tileSize;
-    this.visual.height = this.height * tileSize;
+    this.visual.width = this.width * TILE_SIZE;
+    this.visual.height = this.height * TILE_SIZE;
     var c = this.visual.getContext('2d');
-    var n = Math.floor(image.width / tileSize);
+    var n = Math.floor(image.width / TILE_SIZE);
     for (var x = 0; x < this.width; x++) {
         for (var y = 0; y < this.height; y++) {
             var tile = levelData[y][x];
             if (tile == -1) continue;
             var u = tile % n;
             var v = (tile - u) / n;
-            c.drawImage(image, u * tileSize, v * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
+            c.drawImage(image, u * TILE_SIZE, v * TILE_SIZE, TILE_SIZE, TILE_SIZE, x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
         }
     }
 }
