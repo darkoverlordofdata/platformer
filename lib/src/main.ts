@@ -1,8 +1,3 @@
-var DRAW_DEBUG = false;
-var TILE_SIZE = 16;
-var WINDOW_SCALE = 2;
-var SCREEN_WIDTH = 16;
-var SCREEN_HEIGHT = 12;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Events
@@ -20,7 +15,8 @@ function decodeEvent(e) {
 
 
 window.onload = function() {
-  var c = document.getElementById('screen').getContext('2d');
+  var canvas:HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('screen');
+  var c = canvas.getContext('2d');
   c.canvas.width = SCREEN_WIDTH * TILE_SIZE;
   c.canvas.height = SCREEN_HEIGHT * TILE_SIZE;
   c.canvas.style.width = c.canvas.width * WINDOW_SCALE + 'px';

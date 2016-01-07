@@ -4,8 +4,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Holds the game itself
-var game = {
-    setup: function() {
+class Game {
+
+    world:World;
+    player:Player;
+    entities:Array<any>;
+    particles:Array<any>;
+    bg:HTMLImageElement;
+
+    setup() {
         anims.setup();
         this.world = new World();
         this.player = new Player();
@@ -13,7 +20,7 @@ var game = {
         this.player.box.y = 21;
         this.entities = [this.player];
         this.particles = [];
-        this.bg = document.getElementById('bg');
+        this.bg = <HTMLImageElement>document.getElementById('bg');
 
         // Expand screen regions by the screen size
         for (var i = 0; i < screenData.length; i++) {
@@ -28,9 +35,9 @@ var game = {
         this.entities.push(new Hopper(69, 22));
         this.entities.push(new Hopper(75, 22));
         this.entities.push(new Hopper(81, 22));
-    },
+    }
 
-    update: function() {
+    update() {
         for (var i = 0; i < this.entities.length; i++) {
             this.entities[i].update();
         }
@@ -38,9 +45,9 @@ var game = {
             this.particles[i].update();
             if (this.particles[i].isDone) this.particles.splice(i--, 1);
         }
-    },
+    }
 
-    draw: function(c) {
+    draw(c) {
         var w = c.canvas.width / 2 / TILE_SIZE;
         var h = c.canvas.height / 2 / TILE_SIZE;
         var center = this.player.box.center();
@@ -59,7 +66,7 @@ var game = {
         if (screens.length) {
             var cx = 0, cy = 0;
             for (var i = 0; i < screens.length; i++) {
-                var screen = screens[i];
+                var screen:Array<number> = screens[i];
                 var percent = (Math.min(screen[0] + screen[2], box.x + box.width) - Math.max(screen[0], box.x)) * (
                     Math.min(screen[1] + screen[3], box.y + box.height) - Math.max(screen[1], box.y)) / (box.width * box.height);
                 cx += Math.max(screen[0] + w, Math.min(center.x, screen[0] + screen[2] - w)) * percent;
@@ -109,5 +116,6 @@ var game = {
         }
         c.restore();
     }
-};
+}
 
+var game = new Game();

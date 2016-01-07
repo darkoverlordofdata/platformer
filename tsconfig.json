@@ -7,11 +7,27 @@
         "preserveConstEnums": false,
         "sourceMap": true,
         "experimentalDecorators": true,
-        "outDir": "web/src/spacewar"
+        "outDir": "web/src"
 
     },
 
     "files": [
+        "lib/src/data/boxData.ts",
+        "lib/src/data/levelData.ts",
+        "lib/src/data/screenData.ts",
+        "lib/src/lib/Animation.ts",
+        "lib/src/lib/Box.ts",
+        "lib/src/lib/Sprite.ts",
+        "lib/src/lib/Hopper.ts",
+        "lib/src/lib/Missile.ts",
+        "lib/src/lib/Player.ts",
+        "lib/src/lib/Sound.ts",
+        "lib/src/lib/World.ts",
+        "lib/src/obj/anims.ts",
+        "lib/src/obj/sounds.ts",
+        "lib/src/obj/game.ts",
+        "lib/src/prolog.ts",
+        "lib/src/main.ts"
    ]
 	
 }
