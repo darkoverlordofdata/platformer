@@ -25,8 +25,8 @@ var Sprite = (function () {
             }
         }
     };
-    Sprite.prototype.draw = function (c) {
-        this.anim.draw(c, this.x, this.y, this.frame);
+    Sprite.prototype.draw = function (g) {
+        this.anim.draw(g, this.x, this.y, this.frame);
     };
     Sprite.prototype.setAnim = function (anim) {
         if (this.anim != anim) {

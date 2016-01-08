@@ -5,10 +5,12 @@
 var Game = (function () {
     function Game() {
     }
-    Game.prototype.setup = function () {
-        anims.setup();
+    Game.prototype.initialize = function () {
+        this.anims = new Animations();
+        this.sounds = new Sounds();
+        this.anims.initialize();
         this.world = new World();
-        this.player = new Player();
+        this.player = new Player(this);
         this.player.box.x = 107.5;
         this.player.box.y = 21;
         this.entities = [this.player];
@@ -23,9 +25,9 @@ var Game = (function () {
             screen[3] *= SCREEN_HEIGHT;
         }
         // Add a few enemies to start off
-        this.entities.push(new Hopper(69, 22));
-        this.entities.push(new Hopper(75, 22));
-        this.entities.push(new Hopper(81, 22));
+        this.entities.push(new Hopper(this, 69, 22));
+        this.entities.push(new Hopper(this, 75, 22));
+        this.entities.push(new Hopper(this, 81, 22));
     };
     Game.prototype.update = function () {
         for (var i = 0; i < this.entities.length; i++) {
@@ -101,5 +103,4 @@ var Game = (function () {
     };
     return Game;
 })();
-var game = new Game();
-//# sourceMappingURL=game.js.map
+//# sourceMappingURL=Game.js.map

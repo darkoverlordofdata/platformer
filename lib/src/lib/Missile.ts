@@ -2,7 +2,7 @@
 // class Missile
 ////////////////////////////////////////////////////////////////////////////////
 
-class Missile {
+class Missile extends Entity {
     
     static SPEED = 0.4;
 
@@ -10,50 +10,64 @@ class Missile {
     box:Box;
     sprite:Sprite;
     puffDelay:number;
+    game:Game;
+    anims:Animations;
+    sounds:Sounds;
 
-    constructor(x, y, vx, vy) {
+    constructor(game:Game, x, y, vx, vy) {
+        super();
         x += vx < 0 ? -0.3 : 0.3;
         this.v = { x: vx, y: vy };
+
+        this.game = game;
+        this.anims = game.anims;
+        this.sounds = game.sounds;
         this.box = new Box(x - 0.2, y - 0.2, 0.4, 0.4);
-        this.sprite = new Sprite(vx < 0 ? anims.missiles.left : anims.missiles.right);
+        this.sprite = new Sprite(vx < 0 ? this.anims.missiles.left : this.anims.missiles.right);
         this.puffDelay = 2 + Math.floor(Math.random() * 6);
     }
     
     update() {
         // Update the position
-        var expectedX = this.box.x + this.v.x;
-        game.world.moveBox(this.box, this.v.x, this.v.y, false);
-        this.sprite.centerOn(this.box);
+        var particles = this.game.particles;
+        var entities = this.game.entities;
+        var sounds = this.sounds;
+        var missiles = this.anims.missiles;
+        var box = this.box;
+
+        var expectedX = box.x + this.v.x;
+        this.game.world.moveBox(box, this.v.x, this.v.y, false);
+        this.sprite.centerOn(box);
         this.sprite.update();
     
         // Expode if we hit a wall
-        if (this.box.x != expectedX) {
-            var i = game.entities.indexOf(this);
-            if (i != -1) game.entities.splice(i, 1);
-            game.particles.push(new Sprite(anims.missiles.boom).centerOn(this.box));
+        if (box.x != expectedX) {
+            var i = entities.indexOf(this);
+            if (i != -1) entities.splice(i, 1);
+            particles.push(new Sprite(missiles.boom).centerOn(box));
             sounds.boom.play();
         }
     
         // Add puff particles behind the missile
         if (--this.puffDelay < 0) {
             this.puffDelay = 2 + Math.floor(Math.random() * 6);
-            game.particles.push(new Sprite(anims.missiles.puff).centerOn(this.box));
+            particles.push(new Sprite(missiles.puff).centerOn(box));
         }
     
         // Explode and remove entities when we intersect them
-        for (var i = 0; i < game.entities.length; i++) {
-            var entity = game.entities[i];
-            if (entity instanceof Hopper && this.box.overlaps(entity.box)) {
-                game.particles.push(new Sprite(anims.missiles.boom).centerOn(this.box));
-                game.entities.splice(game.entities.indexOf(this), 1);
-                game.entities.splice(i, 1);
+        for (var i = 0; i < entities.length; i++) {
+            var entity = entities[i];
+            if (entity instanceof Hopper && box.overlaps(entity.box)) {
+                particles.push(new Sprite(missiles.boom).centerOn(box));
+                entities.splice(entities.indexOf(this), 1);
+                entities.splice(i, 1);
                 sounds.boom.play();
                 break;
             }
         }
     }
     
-    draw(c) {
-        this.sprite.draw(c);
+    draw(g) {
+        this.sprite.draw(g);
     }
 }

@@ -4,6 +4,7 @@ var WINDOW_SCALE = 2;
 var SCREEN_WIDTH = 16;
 var SCREEN_HEIGHT = 12;
 var GRAVITY = 0.025 / 2;
+var STEP = 1 / 60;
 var Type;
 (function (Type) {
     Type[Type["Solid"] = 0] = "Solid";

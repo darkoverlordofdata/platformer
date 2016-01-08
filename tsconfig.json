@@ -12,9 +12,11 @@
     },
 
     "files": [
+        "lib/src/prolog.ts",
         "lib/src/data/boxData.ts",
         "lib/src/data/levelData.ts",
         "lib/src/data/screenData.ts",
+        "lib/src/lib/Entity.ts",
         "lib/src/lib/Animation.ts",
         "lib/src/lib/Box.ts",
         "lib/src/lib/Sprite.ts",
@@ -23,11 +25,10 @@
         "lib/src/lib/Player.ts",
         "lib/src/lib/Sound.ts",
         "lib/src/lib/World.ts",
-        "lib/src/obj/anims.ts",
-        "lib/src/obj/sounds.ts",
-        "lib/src/obj/game.ts",
-        "lib/src/prolog.ts",
-        "lib/src/main.ts"
+        "lib/src/lib/Animations.ts",
+        "lib/src/lib/Sounds.ts",
+        "lib/src/lib/Game.ts",
+        "lib/src/lib/Canvas.ts"
    ]
 	
 }

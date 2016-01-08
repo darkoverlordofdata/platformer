@@ -1,0 +1,1 @@
+{"version":3,"file":"Entity.js","sourceRoot":"","sources":["../../../lib/src/lib/Entity.ts"],"names":["Entity","Entity.constructor","Entity.update","Entity.draw"],"mappings":"AAAA;IAAAA;IAKAC,CAACA;IAFCD,uBAAMA,GAANA,cAAUE,CAACA;IACXF,qBAAIA,GAAJA,UAAKA,CAACA,IAAGG,CAACA;IACZH,aAACA;AAADA,CAACA,AALD,IAKC"}

@@ -35,8 +35,8 @@ class Sprite {
         }
     }
     
-    draw(c) {
-        this.anim.draw(c, this.x, this.y, this.frame);
+    draw(g) {
+        this.anim.draw(g, this.x, this.y, this.frame);
     }
     
     setAnim(anim) {
